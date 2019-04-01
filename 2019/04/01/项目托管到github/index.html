@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="测试文本">
+<meta name="description" content="相关步骤  1、安装Node.js和配置好Node.js环境，打开cmd命令行 node -v 打开GitHub官网官网，选择sign up 2、Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README 3、安装Hexo，在自己认为合适的地方创个文件夹，我是">
 <meta name="keywords" content="hexo,github,npm,基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目托管到github">
 <meta property="og:url" content="http://yoursite.com/2019/04/01/项目托管到github/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="测试文本">
+<meta property="og:description" content="相关步骤  1、安装Node.js和配置好Node.js环境，打开cmd命令行 node -v 打开GitHub官网官网，选择sign up 2、Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README 3、安装Hexo，在自己认为合适的地方创个文件夹，我是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-01T07:52:15.495Z">
+<meta property="og:updated_time" content="2019-04-01T08:45:24.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目托管到github">
-<meta name="twitter:description" content="测试文本">
+<meta name="twitter:description" content="相关步骤  1、安装Node.js和配置好Node.js环境，打开cmd命令行 node -v 打开GitHub官网官网，选择sign up 2、Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README 3、安装Hexo，在自己认为合适的地方创个文件夹，我是">
 
 
 
@@ -392,7 +392,61 @@
       
 
       
-        <p>测试文本</p>
+        <blockquote>
+<p>相关步骤</p>
+</blockquote>
+<p>1、安装Node.js和配置好Node.js环境，打开cmd命令行</p>
+<pre><code>node -v
+</code></pre><p>打开<a href="http://www.github.com" target="_blank" rel="noopener">GitHub官网</a>官网，选择sign up</p>
+<p>2、Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README</p>
+<p>3、安装Hexo，在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。然后通过命令行进入到该文件夹里面</p>
+<pre><code>输入npm install hexo -g，开始安装Hexo
+
+输入hexo -v，检查hexo是否安装成功
+
+输入hexo init，初始化该文件夹（等待时间有点长。。。）
+</code></pre><p>看到后面的“Start blogging with Hexo！”，表示成功了！！！！</p>
+<pre><code>输入npm install，安装所需要的组件
+
+输入hexo g，首次体验Hexo
+
+输入hexo s，开启服务器，访问该网址，正式体验Hexo
+</code></pre><p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号</p>
+<pre><code>hexo server -p 5000
+</code></pre><p>有图就成功了，简单吧！</p>
+<p> 4、将Hexo与Github page联系起来，设置Git的user name和email（如果是第一次的话）,打开Git Bash Here,执行如下命令</p>
+<pre><code>git config --global user.name &apos;wsx369&apos;
+
+git config --global user.email &apos;1445407248@qq.com&apos;
+</code></pre><p>上图是在其文件夹里面鼠标右键，点击Git Base Here。这里“feng”可以替换成自己的用户名，邮箱可以替换成自己的邮箱</p>
+<pre><code>输入cd ~/.ssh，检查是否由.ssh的文件夹
+</code></pre><p>如果没有找到，输入ssh-keygen -t rsa -C “<a href="mailto:929762930@qq.com" target="_blank" rel="noopener">929762930@qq.com</a>”，连续三个回车，生成密钥，最后得到了两个文件：id_rsa和id_rsa.pub（默认存储路径是：C:\Users\Administrator.ssh）。</p>
+<pre><code>输入eval &quot;$(ssh-agent -s)&quot;，添加密钥到ssh-agent
+
+再输入ssh-add ~/.ssh/id_rsa，添加生成的SSH key到ssh-agent
+</code></pre><p>5、登录Github，点击头像下的settings，添加ssh，新建一个new ssh key，将id_rsa.pub文件里的内容复制到key中 Title可以自己随便去名称</p>
+<p>6、输入ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，测试添加ssh是否成功。如果看到Hi后面是你的用户名，就说明成功了</p>
+<p>问题：假如ssh-key配置失败，那么只要以下步骤就能完全解决</p>
+<p>首先，清除所有的key-pair</p>
+<pre><code>ssh-add -D
+
+rm -r ~/.ssh
+</code></pre><p>删除你在github中的public-key</p>
+<p>重新生成ssh密钥对</p>
+<pre><code>ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot;
+</code></pre><p>接下来正常操作<br>在github上添加公钥public-key:<br>1、首先在你的终端运行 xclip -sel c ~/.ssh/id_rsa.pub将公钥内容复制到剪切板<br>2、在github上添加公钥时，直接复制即可<br>3、保存</p>
+<p>测试：<br>在终端 ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p>
+<p>7、配置Deployment，在其文件夹中，找到_config.yml文件，修改repo值（在末尾）  </p>
+<pre><code>添加repositiry:repo值是你在github项目里的ssh（右下角） Clone or download  Use SSH
+
+repositiry:git@github.com:wsx369/demo.github.io.git
+
+branch:master
+</code></pre><p>8、新建一篇博客，在cmd执行命令：hexo new post “博客名”</p>
+<pre><code>hexo new post &quot;你好世界&quot;
+</code></pre><p>在生成以及部署文章之前，需要安装一个扩展：</p>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre><p>使用编辑器编好文章，那么就可以使用命令：hexo d -g，生成以及部署了，部署成功后访问你的地址：http://用户名.github.io。那么将看到生成的文章</p>
 
       
     </div>
@@ -402,6 +456,35 @@
 
     
 
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_code.jpg" alt="Seven 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay_code.jpg" alt="Seven 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -523,6 +606,34 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="/" target="_blank" title="home">
+                      
+                        <i class="fa fa-fw fa-globe"></i>home</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wsx369/demo.github.io.git" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/seven258" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.baidu.com" target="_blank" title="qq">
+                      
+                        <i class="fa fa-fw fa-globe"></i>qq</a>
+                  </span>
+                
+            </div>
           
 
           
